@@ -1,54 +1,45 @@
-# Base URL for your API (change if needed)
+Basis-URL für Ihre API (bei Bedarf ändern)
 @baseUrl = http://localhost:8000
 
-# -------------------------------------------------------------------------------------
-# Product API Tests
-# -------------------------------------------------------------------------------------
-
-# 1. List all products (GET /api/products/)
+-------------------------------------------------------------------------------------
+Produkttest der API
+-------------------------------------------------------------------------------------
+1. Alle Produkte auflisten (GET /api/products/)
 GET {{baseUrl}}/api/products/
 
-###
-
-# 2. Create a new product (POST /api/products/create/)
+2. Ein neues Produkt erstellen (POST /api/products/create/)
 POST {{baseUrl}}/api/products/
 Content-Type: application/json
 
 {
-    "name": "Simple Product",
-    "short_description": "Short description",
-    "product_description": "Detailed description.",
-    "price": 10.00,
-    "stock": {
-        "quantity": 5
-    }
+    "name": "Einfaches Produkt",
+    "short_description": "Kurze Beschreibung",
+    "product_description": "Detaillierte Beschreibung.",
+    "price": 10.00,
+    "stock": {
+        "quantity": 5
+    }
 }
 
-###
-
-# 3. Retrieve a specific product (GET /api/products/<pk>/)
-#  -  Replace <pk> with a product ID (e.g., 1)
+3. Ein bestimmtes Produkt abrufen (GET /api/products/&lt;pk>/)
+-  Ersetzen Sie &lt;pk> durch eine Produkt-ID (z. B. 1)
 GET {{baseUrl}}/api/products/1/
 
-###
-
-# 4. Update an existing product (PUT /api/products/<pk>/)
-#  -  Replace <pk> with the product ID to update
+4. Ein vorhandenes Produkt aktualisieren (PUT /api/products/&lt;pk>/)
+-  Ersetzen Sie &lt;pk> durch die zu aktualisierende Produkt-ID
 PUT {{baseUrl}}/api/products/1/
 Content-Type: application/json
 
 {
-    "name": "Updated Product",
-    "short_description": "Updated short description",
-    "product_description": "Updated detailed description.",
-    "price": 15.00,
-    "stock": {
-        "quantity": 20
-    }
+    "name": "Aktualisiertes Produkt",
+    "short_description": "Aktualisierte kurze Beschreibung",
+    "product_description": "Aktualisierte detaillierte Beschreibung.",
+    "price": 15.00,
+    "stock": {
+        "quantity": 20
+    }
 }
 
-###
-
-# 5. Delete a product (DELETE /api/products/<pk>/)
-#  -  Replace <pk> with the product ID to delete
+5. Ein Produkt löschen (DELETE /api/products/&lt;pk>/)
+-  Ersetzen Sie &lt;pk> durch die zu löschende Produkt-ID
 DELETE {{baseUrl}}/api/products/8/

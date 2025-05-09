@@ -1,12 +1,136 @@
-###---### DOKUMENTATION BACKEND ###---###
+Dokumentation: Django-Backend für die Muckie GmbH
+
+Einleitung
+----------
+Dieses Backend wurde für die Muckie GmbH entwickelt, um Produktdaten für ein
+Angular-Frontend bereitzustellen. Es bietet eine REST-API mit den folgenden
+Funktionalitäten:
+
+Produkte:
+  - Anzeigen, Hinzufügen, Bearbeiten und Löschen
+Lagerbestand:
+  - Verwalten
+Einfache Integration mit dem Frontend (CORS ist aktiviert)
 
 
-### PROJECT-SETUP ###
+Installation
+------------
+1. Python installieren:
+   - Bitte installieren Sie Python von der offiziellen Webseite (python.org).
+
+2. Projektordner erstellen:
+   - Erstellen Sie einen neuen Ordner für das Projekt und öffnen Sie diesen in VS Code.
+
+3. Virtuelle Umgebung aktivieren:
+   - Führen Sie die folgenden Befehle im Terminal aus:
+     python -m venv venv
+     .\venv\Scripts\activate
+
+4. Abhängigkeiten installieren:
+   - Installieren Sie die benötigten Pakete mit diesem Befehl im Terminal:
+     pip install django djangorestframework django-cors-headers
+
+5. Datenbank einrichten:
+   - Führen Sie diesen Befehl im Terminal aus:
+     python manage.py migrate
+
+6. Admin-Benutzer erstellen:
+   - Dies ist für die manuelle Verwaltung der Produkte notwendig. Führen Sie diesen
+     Befehl aus:
+     python manage.py createsuperuser
+   - Folgen Sie den Anweisungen, um einen Benutzernamen und ein Passwort
+     festzulegen.
+
+7. Server starten:
+   - Starten Sie den Entwicklungsserver mit diesem Befehl:
+     python manage.py runserver
 
 
+API-Endpunkte
+-------------
+Die folgenden URLs und Methoden stehen für die Interaktion mit der API zur
+Verfügung:
 
-###- API -###
+URL                          | Methode | Beschreibung
+-----------------------------|---------|---------------------------------
+http://localhost:8000/api/products/    | GET     | Alle Produkte anzeigen
+http://localhost:8000/api/products/create/ | POST    | Ein neues Produkt hinzufügen
+http://localhost:8000/api/products/1/   | GET     | Produkt mit der ID 1 anzeigen
+http://localhost:8000/api/products/1/   | PUT     | Produkt mit der ID 1 aktualisieren
+http://localhost:8000/api/products/1/   | DELETE  | Produkt mit der ID 1 löschen
 
 
+Produkt hinzufügen (manuell)
+--------------------------
+1. Öffnen Sie die Adresse http://localhost:8000/admin/ in Ihrem Browser.
+2. Melden Sie sich mit Ihren Superuser-Zugangsdaten an.
+3. Klicken Sie auf "Products" -> "Add Product".
+4. Füllen Sie die entsprechenden Felder aus:
+   - Name (z.B. "Smartphone")
+   - Kurzbeschreibung (z.B. "Leistungsstarkes Handy")
+   - Beschreibung (ausführlicher Text)
+   - Preis (z.B. "599.99")
+   - Lagerbestand (z.B. "100")
 
 
+API-Beispiel
+------------
+(Verwendung mit einem REST-Client wie REST Client von Huachao Mao)
+
+Basis-URL für Ihre API (bei Bedarf anpassen): @baseUrl = http://localhost:8000
+
+1. Alle Produkte abrufen (GET /api/products/)
+   GET {{baseUrl}}/api/products/
+
+2. Ein neues Produkt erstellen (POST /api/products/create/)
+   POST {{baseUrl}}/api/products/
+   Content-Type: application/json
+
+   {
+       "name": "Einfaches Produkt",
+       "short_description": "Kurze Beschreibung",
+       "product_description": "Detaillierte Beschreibung.",
+       "price": 10.00,
+       "stock": {
+           "quantity": 5
+       }
+   }
+
+3. Ein bestimmtes Produkt abrufen (GET /api/products/<pk>/)
+   - Ersetzen Sie <pk> durch die ID des gewünschten Produkts (z.B. 1).
+   GET {{baseUrl}}/api/products/1/
+
+4. Ein vorhandenes Produkt aktualisieren (PUT /api/products/<pk>/)
+   - Ersetzen Sie <pk> durch die ID des zu aktualisierenden Produkts.
+   PUT {{baseUrl}}/api/products/1/
+   Content-Type: application/json
+
+   {
+       "name": "Aktualisiertes Produkt",
+       "short_description": "Aktualisierte kurze Beschreibung",
+       "product_description": "Aktualisierte detaillierte Beschreibung.",
+       "price": 15.00,
+       "stock": {
+           "quantity": 20
+       }
+   }
+
+5. Ein Produkt löschen (DELETE /api/products/<pk>/)
+   - Ersetzen Sie <pk> durch die ID des zu löschenden Produkts.
+   DELETE {{baseUrl}}/api/products/8/
+
+
+Häufig gestellte Fragen
+----------------------
+1. Wie kann die API getestet werden?
+   - Verwenden Sie hierfür Programme wie Postman oder den REST Client in VS Code.
+   - Alternativ können Sie die URL http://localhost:8000/api/products/ in
+     Ihrem Browser aufrufen.
+
+2. Wo werden die Produktdaten gespeichert?
+   - Standardmäßig werden die Daten in einer SQLite-Datenbank gespeichert
+     (`db.sqlite3`).
+
+3. Wie können weitere Produkte hinzugefügt werden?
+   - Manuell über den Administrationsbereich (`/admin/`).
+   - Programmatisch über den API-Endpunkt (`/api/products/create/`).
