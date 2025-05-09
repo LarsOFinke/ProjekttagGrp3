@@ -1,0 +1,13 @@
+# POST a new product with initial stock information
+POST http://localhost:8000/api/products/
+Content-Type: application/json
+
+{
+    "name": "Another Awesome Gadget",
+    "short_description": "Even better than the last one!",
+    "product_description": "All the amazing details about this improved gadget.",
+    "price": 49.99,
+    "stock": {
+        "quantity": 200
+    }
+}
