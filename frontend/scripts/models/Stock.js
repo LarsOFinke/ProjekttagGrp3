@@ -1,7 +1,10 @@
-import { get_current_stock } from "../api";
-
+import { fetch_data } from "../api";
 export class Stock {
   constructor() {
-    this.stock = get_current_stock();
+    this.stock = this.get_current_stock();
+  }
+
+  async get_current_stock() {
+    return await fetch_data("stock");
   }
 }
