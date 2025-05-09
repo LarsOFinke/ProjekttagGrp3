@@ -2,10 +2,10 @@ import { environment } from "../environments/test.environment";
 
 const api_url = environment.api_url;
 
-export async function fetch_data(category) {
+export async function fetchData(category) {
   data = [];
 
-  return fetch(`${api_url}get-topics`, {
+  return fetch(`${api_url}get-${category}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
