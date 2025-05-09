@@ -1,13 +1,54 @@
-# POST a new product with initial stock information
-POST http://localhost:8000/api/products/
+# Base URL for your API (change if needed)
+@baseUrl = http://localhost:8000
+
+# -------------------------------------------------------------------------------------
+# Product API Tests
+# -------------------------------------------------------------------------------------
+
+# 1. List all products (GET /api/products/)
+GET {{baseUrl}}/api/products/
+
+###
+
+# 2. Create a new product (POST /api/products/create/)
+POST {{baseUrl}}/api/products/
 Content-Type: application/json
 
 {
-    "name": "Another Awesome Gadget",
-    "short_description": "Even better than the last one!",
-    "product_description": "All the amazing details about this improved gadget.",
-    "price": 49.99,
+    "name": "Simple Product",
+    "short_description": "Short description",
+    "product_description": "Detailed description.",
+    "price": 10.00,
     "stock": {
-        "quantity": 200
+        "quantity": 5
     }
 }
+
+###
+
+# 3. Retrieve a specific product (GET /api/products/<pk>/)
+#  -  Replace <pk> with a product ID (e.g., 1)
+GET {{baseUrl}}/api/products/1/
+
+###
+
+# 4. Update an existing product (PUT /api/products/<pk>/)
+#  -  Replace <pk> with the product ID to update
+PUT {{baseUrl}}/api/products/1/
+Content-Type: application/json
+
+{
+    "name": "Updated Product",
+    "short_description": "Updated short description",
+    "product_description": "Updated detailed description.",
+    "price": 15.00,
+    "stock": {
+        "quantity": 20
+    }
+}
+
+###
+
+# 5. Delete a product (DELETE /api/products/<pk>/)
+#  -  Replace <pk> with the product ID to delete
+DELETE {{baseUrl}}/api/products/8/

@@ -11,15 +11,15 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'name', 'short_description', 'product_description', 'stock', 'price']
+        fields = ['id', 'name', 'short_description', 'product_description', 'price', 'stock']
 
-def create(self, validated_data):
-    stock_data = validated_data.pop('stock')
-    # First create the product
-    product = Product.objects.create(**validated_data)
-    # Then create the stock with the product as foreign key
-    Stock.objects.create(product=product, **stock_data)
-    return product
+    def create(self, validated_data):
+        stock_data = validated_data.pop('stock')
+        # First create the product
+        product = Product.objects.create(**validated_data)
+        # Then create the stock with the product as foreign key
+        Stock.objects.create(product=product, **stock_data)
+        return product
 
     def update(self, instance, validated_data):
         stock_data = validated_data.pop('stock', None)
