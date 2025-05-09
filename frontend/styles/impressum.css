@@ -1,0 +1,38 @@
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #121212;
+    color: #e0e0e0;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background-color: #1e1e1e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+/* Überschriften */
+h1 {
+    color: #ffffff;
+    margin-bottom: 1em;
+}
+
+/* Links */
+a {
+    color: #4ea3ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Absätze */
+p {
+    margin-bottom: 1em;
+}
