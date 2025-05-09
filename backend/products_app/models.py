@@ -10,9 +10,12 @@ class Product(models.Model):
         return self.name
 
 class Stock(models.Model):
+    # Definiert eine eindeutige Verbindung zu einem Produkt.
+    # 'on_delete=models.CASCADE' stellt sicher, dass der Lagerbestand bei Löschung des Produkts ebenfalls entfernt wird.
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='stock')
     quantity = models.PositiveIntegerField(default=0)
+    # Speichert automatisch den Zeitpunkt der letzten Änderung des Lagerbestands.
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"Stock: {self.quantity} items for {self.product.name}"
+        return f"Lagerbestand: {self.quantity} Artikel für {self.product.name}"

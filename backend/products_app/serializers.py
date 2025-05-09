@@ -2,11 +2,21 @@ from rest_framework import serializers
 from .models import Product, Stock
 
 class StockSerializer(serializers.ModelSerializer):
+    """
+    Verantwortlich für die Umwandlung von Stock-Instanzen
+    in Python-Datentypen, die leicht in JSON oder andere Formate gerendert werden können.
+    """
     class Meta:
         model = Stock
         fields = ['quantity', 'last_updated']
 
 class ProductSerializer(serializers.ModelSerializer):
+
+    """
+    Beinhaltet einen verschachtelten StockSerializer,
+    um die zugehörigen Lagerinformationen für jedes Produkt einzuschließen.
+    """
+
     stock = StockSerializer()
 
     class Meta:
@@ -15,9 +25,9 @@ class ProductSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         stock_data = validated_data.pop('stock')
-        # First create the product
+        # zuerst das Produkt erstellen
         product = Product.objects.create(**validated_data)
-        # Then create the stock with the product as foreign key
+        # Dann den Lagerbestand mit dem Produkt als Foreign Key erstellen
         Stock.objects.create(product=product, **stock_data)
         return product
 
