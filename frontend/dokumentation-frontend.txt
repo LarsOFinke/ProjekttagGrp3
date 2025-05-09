@@ -1,0 +1,28 @@
+###---### DOKUMENTATION FRONTEND ###---###
+
+
+### PROJECT-SETUP ###
+
+
+
+###- API -###
+
+## EXAMPLES ##
+# No1 #
+
+
+# No2 #
+
+
+# Nr3 #
+
+
+
+## RESULT ##
+# IF SUCCESS #
+{ "success": True [, "message": "..." [, update: {...}]]  }
+
+# ELSE #
+{ "success": False [, "message": "..."] }
+
+
